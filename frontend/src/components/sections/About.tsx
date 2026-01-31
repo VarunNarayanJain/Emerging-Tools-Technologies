@@ -1,0 +1,171 @@
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { BookOpen, Target, Zap } from "lucide-react"
+
+gsap.registerPlugin(ScrollTrigger)
+
+export function About() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".about-card", {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center+=100",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section
+      id="about"
+      ref={sectionRef}
+      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
+    >
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            About the{" "}
+            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              System
+            </span>
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            A comprehensive early warning system designed to identify at-risk
+            students before it's too late
+          </p>
+        </div>
+
+        {/* Content Grid */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          {/* Left - Text Content */}
+          <div className="space-y-6">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Transforming Student Success Through Data
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              Educational institutions often identify struggling students only
+              after final examination results are published. By then, meaningful
+              intervention becomes difficult. Our Early Warning System changes
+              that.
+            </p>
+            <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              By consolidating attendance records, assessment scores, and
+              subject attempt history into a single platform, we provide
+              educators with a holistic view of student performance, enabling
+              timely and effective interventions.
+            </p>
+
+            <div className="flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+              <Target className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  Our Mission
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  To reduce student dropout rates through early identification,
+                  transparent analytics, and actionable insights.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right - Image/Graphic Placeholder */}
+          <div className="relative">
+            <div className="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/20 rounded-3xl shadow-2xl flex items-center justify-center">
+              <div className="text-center p-8">
+                <BookOpen className="w-24 h-24 text-orange-600 dark:text-orange-400 mx-auto mb-4" />
+                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  Data-Driven Insights
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Powered by Machine Learning & LLMs
+                </p>
+              </div>
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-300/30 dark:bg-orange-600/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-orange-400/30 dark:bg-orange-500/20 rounded-full blur-2xl"></div>
+          </div>
+        </div>
+
+        {/* Key Highlights */}
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
+            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
+              <Zap className="w-7 h-7 text-orange-600 dark:text-orange-400" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              Real-Time Monitoring
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Continuous tracking of student performance indicators with instant
+              alerts for mentors and counselors.
+            </p>
+          </div>
+
+          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
+            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
+              <svg
+                className="w-7 h-7 text-orange-600 dark:text-orange-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              Transparent & Explainable
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Rule-based machine learning with clear explanations for every risk
+              assessment decision.
+            </p>
+          </div>
+
+          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
+            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
+              <svg
+                className="w-7 h-7 text-orange-600 dark:text-orange-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              Easy Configuration
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Low-cost solution that integrates seamlessly with existing
+              institutional data sources.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
