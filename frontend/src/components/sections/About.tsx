@@ -3,6 +3,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Target, Zap } from "lucide-react"
 import { EduAlertCard } from "../ui/EduAlertCard"
+import { DataCharts } from "../ui/DeCharts"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -49,7 +50,7 @@ export function About() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
           {/* Left - Text Content */}
           <div className="space-y-6">
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -68,7 +69,8 @@ export function About() {
               timely and effective interventions.
             </p>
 
-            <div className="flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+            {/* Our Mission */}
+            <div className="about-card flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
               <Target className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -80,33 +82,25 @@ export function About() {
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Right - 3D Card */}
-          <div className="relative">
-            <EduAlertCard />
-          </div>
-        </div>
-
-        {/* Key Highlights */}
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
-            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
-              <Zap className="w-7 h-7 text-orange-600 dark:text-orange-400" />
+            {/* Real-Time Monitoring */}
+            <div className="about-card flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+              <Zap className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-1" />
+              <div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  Real-Time Monitoring
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Continuous tracking of student performance indicators with
+                  instant alerts for mentors and counselors.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Real-Time Monitoring
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Continuous tracking of student performance indicators with instant
-              alerts for mentors and counselors.
-            </p>
-          </div>
 
-          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
-            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
+            {/* Transparent & Explainable */}
+            <div className="about-card flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
               <svg
-                className="w-7 h-7 text-orange-600 dark:text-orange-400"
+                className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -118,20 +112,21 @@ export function About() {
                   d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                 />
               </svg>
+              <div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  Transparent & Explainable
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Rule-based machine learning with clear explanations for every
+                  risk assessment decision.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Transparent & Explainable
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Rule-based machine learning with clear explanations for every risk
-              assessment decision.
-            </p>
-          </div>
 
-          <div className="about-card p-6 bg-gradient-to-br from-white to-orange-50 dark:from-gray-800 dark:to-gray-800/50 rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30">
-            <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mb-4">
+            {/* Easy Configuration */}
+            <div className="about-card flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
               <svg
-                className="w-7 h-7 text-orange-600 dark:text-orange-400"
+                className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -143,14 +138,22 @@ export function About() {
                   d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
                 />
               </svg>
+              <div>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                  Easy Configuration
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Low-cost solution that integrates seamlessly with existing
+                  institutional data sources.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-              Easy Configuration
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Low-cost solution that integrates seamlessly with existing
-              institutional data sources.
-            </p>
+            <DataCharts/>
+          </div>
+
+          {/* Right - 3D Card */}
+          <div className="relative">
+            <EduAlertCard />
           </div>
         </div>
       </div>
