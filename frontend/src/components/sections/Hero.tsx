@@ -13,9 +13,9 @@ export function Hero() {
   // Array of background images
   const images = [
     "/manipal.png",
-    "/ab3.png",
-    "/amphitheatre.jfif",
-    "/ab1.jfif",
+    "/ab1.png",
+    "/amphitheatre.png",
+    "/ab3.jpg",
   ]
 
   // Slideshow effect
@@ -61,7 +61,7 @@ export function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-8"
     >
       {/* Background Image Slideshow */}
       <div className="absolute inset-0 z-0">
@@ -75,27 +75,11 @@ export function Hero() {
           />
         ))}
         
-        {/* Gradient Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-orange-50/90 to-cream-50/95 dark:from-gray-900/95 dark:via-gray-800/90 dark:to-gray-900/95" />
+        {/* Gradient Overlay - REDUCED OPACITY for more image visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/75 via-orange-50/70 to-cream-50/75 dark:from-gray-900/75 dark:via-gray-800/70 dark:to-gray-900/75" />
         
-        {/* Additional overlay for more control */}
-        <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/60" />
-      </div>
-
-      {/* Slideshow Indicators */}
-      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImage(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentImage === index
-                ? "bg-orange-600 w-8"
-                : "bg-orange-300 dark:bg-orange-800 hover:bg-orange-500"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+        {/* Additional overlay - REDUCED OPACITY */}
+        <div className="absolute inset-0 bg-white/35 dark:bg-gray-900/35" />
       </div>
 
       {/* Animated Background Elements */}
@@ -128,7 +112,7 @@ export function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
             <button className="group px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center space-x-2">
               <span>Explore Dashboard</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -139,7 +123,7 @@ export function Hero() {
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-lg border border-orange-200 dark:border-orange-900/30 hover:scale-105 transition-transform">
               <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Users className="w-6 h-6 text-orange-600 dark:text-orange-400" />
@@ -185,6 +169,22 @@ export function Hero() {
               </h3>
               <p className="text-gray-600 dark:text-gray-400">Alert System</p>
             </div>
+          </div>
+
+          {/* Slideshow Indicators - BELOW STATS CARDS */}
+          <div className="flex justify-center space-x-3 pt-4">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImage(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentImage === index
+                    ? "bg-orange-600 dark:bg-orange-500 w-8"
+                    : "bg-orange-300 dark:bg-orange-700 w-2 hover:bg-orange-500 dark:hover:bg-orange-600"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>
