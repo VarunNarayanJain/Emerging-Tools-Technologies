@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ArrowRight, BarChart3, Users } from "lucide-react"
 
@@ -7,7 +7,27 @@ export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
+  
+  const [currentImage, setCurrentImage] = useState(0)
+  
+  // Array of background images
+  const images = [
+    "/manipal.png",
+    "/ab3.png",
+    "/amphitheatre.jfif",
+    "/ab1.jfif",
+  ]
 
+  // Slideshow effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length)
+    }, 5000) // Change image every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  // GSAP animations
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(titleRef.current, {
@@ -41,10 +61,45 @@ export function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-orange-50 via-cream-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
+      {/* Background Image Slideshow */}
+      <div className="absolute inset-0 z-0">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+              currentImage === index ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url('${image}')` }}
+          />
+        ))}
+        
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-orange-50/90 to-cream-50/95 dark:from-gray-900/95 dark:via-gray-800/90 dark:to-gray-900/95" />
+        
+        {/* Additional overlay for more control */}
+        <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/60" />
+      </div>
+
+      {/* Slideshow Indicators */}
+      <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImage(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              currentImage === index
+                ? "bg-orange-600 w-8"
+                : "bg-orange-300 dark:bg-orange-800 hover:bg-orange-500"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-orange-300/20 dark:bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-orange-400/20 dark:bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
