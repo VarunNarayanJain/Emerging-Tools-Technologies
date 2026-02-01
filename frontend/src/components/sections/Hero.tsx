@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ArrowRight, BarChart3, Users } from "lucide-react"
+import { EncryptedText } from "@/components/ui/encrypted-text"
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -10,7 +11,6 @@ export function Hero() {
   
   const [currentImage, setCurrentImage] = useState(0)
   
-  // Array of background images
   const images = [
     "/manipal.png",
     "/ab1.png",
@@ -18,16 +18,13 @@ export function Hero() {
     "/ab3.jpg",
   ]
 
-  // Slideshow effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length)
-    }, 5000) // Change image every 5 seconds
-
+    }, 5000)
     return () => clearInterval(interval)
   }, [images.length])
 
-  // GSAP animations
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(titleRef.current, {
@@ -74,11 +71,7 @@ export function Hero() {
             style={{ backgroundImage: `url('${image}')` }}
           />
         ))}
-        
-        {/* Gradient Overlay - REDUCED OPACITY for more image visibility */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/75 via-orange-50/70 to-cream-50/75 dark:from-gray-900/75 dark:via-gray-800/70 dark:to-gray-900/75" />
-        
-        {/* Additional overlay - REDUCED OPACITY */}
         <div className="absolute inset-0 bg-white/35 dark:bg-gray-900/35" />
       </div>
 
@@ -97,7 +90,12 @@ export function Hero() {
           >
             Empowering Education with{" "}
             <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-              Early Intervention
+              <EncryptedText
+                text="Early Intervention"
+                encryptedClassName="opacity-60"
+                revealedClassName="opacity-100"
+                revealDelayMs={80}
+              />
             </span>
           </h1>
 
@@ -171,7 +169,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Slideshow Indicators - BELOW STATS CARDS */}
+          {/* Slideshow Indicators */}
           <div className="flex justify-center space-x-3 pt-4">
             {images.map((_, index) => (
               <button
